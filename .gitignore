@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Wrangler / Cloudflare
+.wrangler/
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+
+# Ferramentas de build/clone (não precisam ir pra produção)
+mirror.js
+all_urls.txt
+asset-map.json

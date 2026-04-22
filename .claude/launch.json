@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "lp-clone",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["--yes", "http-server", "squads/lp-builder/output/2026-04-20-152622/clone", "-p", "8787", "-c-1", "--silent"],
+      "port": 8787
+    }
+  ]
+}

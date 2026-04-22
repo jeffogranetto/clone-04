@@ -1,0 +1,11 @@
+# Copie este arquivo para .dev.vars (gitignored) para rodar local com wrangler
+# Em produção, configure estas mesmas variáveis no painel Cloudflare Pages
+# (Settings → Environment variables → Production)
+
+# ActiveCampaign
+AC_API_URL=https://SEU_DOMINIO.api-us1.com
+AC_API_KEY=SUA_API_KEY_AQUI
+AC_TAG_NAME=NOME_DA_TAG_AQUI
+
+# Clint Digital — webhook completo
+CLINT_WEBHOOK_URL=https://functions-api.clint.digital/endpoints/integration/webhook/SEU_ID_AQUI
