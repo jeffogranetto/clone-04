@@ -9,34 +9,227 @@
 
 <script id="custom-gtm">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src="https://load.traker.fundacoessemcomplicacoes.com.br/awvoctqkzh.js?"+i;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','42cfn=AR5WNiAuQj1fKFkmRlZWUB5HWV9FRQsYVRweHxACDBkNCRgUGQAAGxgWAhIVAAATG1QIHhlNDQQ%3D');</script>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira:wght@400;600;700;800&family=Saira+Condensed:wght@700;800;900&display=swap">
 <style id="custom-css">
-  /* Barra promocional */
+  /* === Variáveis tematizadas (UAG: laranja accent, verde CTA) === */
+  :root {
+    --c-accent: #f77b00;
+    --c-accent-light: #ff9d3d;
+    --c-cta: #16a34a;
+    --c-cta-light: #22c55e;
+    --burgundy-dark: #4A1010;
+    --white: #FFFFFF;
+    --font-display: 'Saira Condensed', system-ui, sans-serif;
+    --font-body: 'Saira', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --radius-lg: 18px;
+  }
+
+  /* Barra promocional (mantida) */
   #promo-bar{position:relative;z-index:9999;width:100%;background:linear-gradient(90deg,#e45a00,#f77b00);color:#fff;text-align:center;padding:10px 12px;font-family:Montserrat,sans-serif;font-weight:800;font-size:15px;letter-spacing:.5px;text-transform:uppercase;box-shadow:0 2px 8px rgba(0,0,0,.25)}
 
   /* Esconde o form inline original da LP (substituído pelo modal) */
   form.e_formulario,
   form.e_formulario + .gpc_botao{display:none !important}
 
-  /* CTA do hero (botão grande em destaque que abre o modal) */
-  .reveal-form-btn{display:inline-block;background:linear-gradient(135deg,#1fb06b,#3dd184);color:#fff;font-family:Montserrat,sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.6px;padding:16px 28px;border-radius:8px;border:none;cursor:pointer;box-shadow:0 6px 20px rgba(31,176,107,.35);transition:transform .15s ease,box-shadow .2s ease;font-size:16px;margin:10px 0}
-  .reveal-form-btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(31,176,107,.45)}
+  /* === CTA Button (com selo MEC deslizante) === */
+  .btn-glow {
+    position: relative; display: inline-block;
+    height: 56px; width: 330px; max-width: 100%;
+    border-radius: 999px;
+    background: var(--c-cta); color: var(--white);
+    font-family: var(--font-display);
+    font-size: 1rem; font-weight: 800;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    cursor: pointer; isolation: isolate;
+    transition: background 300ms var(--ease-out);
+    -webkit-tap-highlight-color: transparent;
+    border: none; text-decoration: none;
+  }
+  .btn-glow:hover { background: var(--c-cta-light); }
+  .btn-glow:active { transform: scale(0.97); }
+  .btn-glow__label {
+    position: absolute; top: 50%; left: 2rem;
+    transform: translateY(-50%); z-index: 2;
+    white-space: nowrap;
+    transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+    text-shadow: 0 1px 2px rgba(74, 16, 16, 0.25);
+  }
+  .btn-glow:hover .btn-glow__label { transform: translate(80px, -50%); }
+  .btn-glow__seal {
+    position: absolute; right: -10px; top: 50%;
+    width: 82px; height: 82px;
+    transform: translateY(-50%); z-index: 3;
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none;
+    transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-glow:hover .btn-glow__seal { transform: translate(-248px, -50%); }
+  .btn-glow__seal img {
+    width: 100%; height: 100%; object-fit: contain;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.35));
+    transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-glow:hover .btn-glow__seal img { transform: scale(1.1); }
+  @media (max-width: 900px) {
+    .btn-glow { width: 290px; height: 54px; font-size: 0.95rem; }
+    .btn-glow__seal { width: 74px; height: 74px; }
+    .btn-glow:hover .btn-glow__seal { transform: translate(-230px, -50%); }
+  }
+  @media (max-width: 560px) {
+    .btn-glow { width: 100%; max-width: 320px; }
+  }
 
-  /* Modal */
-  #lead-modal{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:100000;display:none;align-items:center;justify-content:center;padding:20px;font-family:Montserrat,sans-serif}
-  #lead-modal.open{display:flex}
-  #lead-modal .modal-card{background:#fff;width:100%;max-width:460px;border-radius:14px;padding:28px 24px;box-shadow:0 20px 60px rgba(0,0,0,.5);position:relative;animation:leadModalIn .25s ease-out}
-  @keyframes leadModalIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
-  #lead-modal .modal-close{position:absolute;top:10px;right:14px;background:none;border:none;font-size:28px;line-height:1;color:#888;cursor:pointer}
-  #lead-modal .modal-close:hover{color:#000}
-  #lead-modal h3{color:#0b1f1a;font-size:22px;font-weight:800;margin-bottom:6px;text-align:center}
-  #lead-modal p.subtitle{color:#555;font-size:14px;margin-bottom:18px;text-align:center}
-  #lead-modal .modal-field{display:block;width:100%;padding:13px 14px;margin:8px 0;border:1px solid #d6d6d6;border-radius:7px;font-size:15px;font-family:inherit;color:#222;background:#fff;box-sizing:border-box;transition:border-color .15s}
-  #lead-modal .modal-field:focus{outline:none;border-color:#1fb06b;box-shadow:0 0 0 3px rgba(31,176,107,.18)}
-  #lead-modal select.modal-field{appearance:auto;-webkit-appearance:menulist;height:46px}
-  #lead-modal .modal-submit{display:block;width:100%;background:linear-gradient(135deg,#1fb06b,#3dd184);color:#fff;font-weight:800;text-transform:uppercase;letter-spacing:.5px;padding:15px;border:none;border-radius:7px;font-size:15px;cursor:pointer;margin-top:12px;transition:transform .12s,box-shadow .15s}
-  #lead-modal .modal-submit:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 8px 20px rgba(31,176,107,.35)}
-  #lead-modal .modal-submit:disabled{opacity:.6;cursor:not-allowed}
-  #lead-modal .modal-privacy{font-size:11px;color:#888;text-align:center;margin-top:10px}
+  /* === Modal === */
+  .lead-modal {
+    position: fixed; inset: 0; z-index: 99999;
+    display: flex; align-items: center; justify-content: center;
+    padding: clamp(1rem, 3vw, 2rem);
+    visibility: hidden; opacity: 0;
+    transition: opacity 350ms var(--ease-out), visibility 350ms var(--ease-out);
+    font-family: var(--font-body);
+  }
+  .lead-modal.is-open { visibility: visible; opacity: 1; }
+  .lead-modal__backdrop {
+    position: absolute; inset: 0;
+    background: rgba(10, 4, 4, 0.78);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    cursor: pointer;
+  }
+  .lead-modal__dialog {
+    position: relative; z-index: 1;
+    width: 100%; max-width: 520px;
+    max-height: calc(100vh - 2rem); overflow-y: auto;
+    padding: clamp(1.8rem, 4vw, 2.6rem) clamp(1.5rem, 3.5vw, 2.4rem);
+    background: linear-gradient(180deg, #ffffff 0%, #fbf5ec 100%);
+    border: 1px solid rgba(247, 123, 0, 0.3);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 60px 120px -20px rgba(0, 0, 0, 0.6);
+    transform: translateY(30px) scale(0.96);
+    transition: transform 450ms var(--ease-out);
+    isolation: isolate;
+  }
+  .lead-modal.is-open .lead-modal__dialog { transform: translateY(0) scale(1); }
+  .lead-modal__dialog::before {
+    content: ''; position: absolute; left: 0; right: 0; top: 0;
+    height: 4px;
+    background: linear-gradient(90deg, transparent 0%, var(--c-accent) 50%, transparent 100%);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+  .lead-modal__close {
+    position: absolute; top: 0.9rem; right: 0.9rem;
+    width: 40px; height: 40px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    background: rgba(74, 16, 16, 0.08); color: var(--burgundy-dark);
+    border: none; cursor: pointer;
+    transition: background 200ms var(--ease-out), transform 200ms var(--ease-out);
+    z-index: 2;
+  }
+  .lead-modal__close:hover { background: var(--c-accent); color: var(--white); transform: rotate(90deg); }
+  .lead-modal__close svg { width: 20px; height: 20px; }
+  .lead-modal__head { margin-bottom: 1.5rem; padding-right: 2rem; }
+  .lead-modal__eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.35rem 0.8rem;
+    background: rgba(247, 123, 0, 0.1);
+    border: 1px solid rgba(247, 123, 0, 0.3);
+    border-radius: 999px;
+    font-family: var(--font-display);
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--c-accent);
+    margin-bottom: 0.8rem;
+  }
+  .lead-modal__eyebrow-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--c-accent);
+    box-shadow: 0 0 0 4px rgba(247, 123, 0, 0.18);
+  }
+  .lead-modal__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2vw + 0.5rem, 1.8rem);
+    font-weight: 900; color: var(--burgundy-dark);
+    line-height: 1.15; letter-spacing: -0.01em;
+    margin-bottom: 0.5rem;
+  }
+  .lead-modal__subtitle { font-size: 0.92rem; line-height: 1.5; color: rgba(26, 26, 26, 0.65); }
+  .lead-form { display: flex; flex-direction: column; gap: 0.9rem; }
+  .lead-field { display: flex; flex-direction: column; gap: 0.35rem; }
+  .lead-field__label {
+    font-family: var(--font-display);
+    font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--burgundy-dark);
+  }
+  .lead-field input, .lead-field select {
+    width: 100%; padding: 0.85rem 1rem;
+    background: #ffffff;
+    border: 1.5px solid rgba(74, 16, 16, 0.18);
+    border-radius: 10px;
+    font-family: var(--font-body);
+    font-size: 0.98rem; color: #1a1a1a;
+    transition: border-color 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
+  }
+  .lead-field input::placeholder { color: rgba(26, 26, 26, 0.35); }
+  .lead-field input:focus, .lead-field select:focus {
+    outline: none; border-color: var(--c-accent);
+    box-shadow: 0 0 0 3px rgba(247, 123, 0, 0.18);
+  }
+  .lead-field input:invalid:not(:placeholder-shown),
+  .lead-field select:invalid:not(:focus) { border-color: rgba(199, 60, 60, 0.5); }
+  .lead-field__select { position: relative; }
+  .lead-field__select select {
+    appearance: none; -webkit-appearance: none; -moz-appearance: none;
+    padding-right: 2.5rem; cursor: pointer;
+  }
+  .lead-field__select select:required:invalid { color: rgba(26, 26, 26, 0.35); }
+  .lead-field__select option { color: #1a1a1a; }
+  .lead-field__select option[disabled] { color: rgba(26, 26, 26, 0.35); }
+  .lead-field__chevron {
+    position: absolute; right: 1rem; top: 50%;
+    width: 18px; height: 18px;
+    transform: translateY(-50%); color: var(--burgundy-dark);
+    pointer-events: none;
+  }
+  .modal-submit {
+    margin-top: 0.6rem; padding: 1.1rem 1.4rem;
+    background: var(--c-cta); color: var(--white);
+    border: none; border-radius: 999px;
+    font-family: var(--font-display);
+    font-size: 1rem; font-weight: 800;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 0.6rem;
+    transition: background 250ms var(--ease-out), transform 200ms var(--ease-out), box-shadow 300ms var(--ease-out);
+    box-shadow: 0 16px 32px -14px rgba(22, 163, 74, 0.6);
+  }
+  .modal-submit svg { width: 18px; height: 18px; transition: transform 350ms var(--ease-out); }
+  .modal-submit:hover {
+    background: var(--c-cta-light); transform: translateY(-2px);
+    box-shadow: 0 20px 38px -14px rgba(22, 163, 74, 0.75);
+  }
+  .modal-submit:hover svg { transform: translateX(4px); }
+  .modal-submit:disabled { opacity: 0.7; cursor: wait; transform: none; }
+  .lead-form__disclaimer {
+    font-size: 0.76rem; color: rgba(26, 26, 26, 0.5);
+    text-align: center; line-height: 1.45; margin-top: 0.3rem;
+  }
+  body.modal-open { overflow: hidden; }
+  @media (max-width: 560px) {
+    .lead-modal { padding: 0.8rem; align-items: flex-end; }
+    .lead-modal__dialog {
+      max-width: 100%; max-height: calc(100vh - 1rem);
+      border-radius: 18px 18px 0 0; padding: 1.6rem 1.2rem;
+    }
+    .lead-modal__head { margin-bottom: 1.2rem; padding-right: 1.5rem; }
+    .lead-modal__title { font-size: 1.35rem; }
+    .lead-field input, .lead-field select { padding: 0.8rem 0.9rem; font-size: 0.95rem; }
+    .modal-submit { padding: 1rem 1.2rem; font-size: 0.95rem; }
+  }
 </style>
 <style id="opensquad-card-removed-fix">
 @media (max-width: 800px) {
@@ -81,24 +274,51 @@
 
 
 
-<div id="lead-modal" role="dialog" aria-modal="true" aria-labelledby="lead-modal-title">
-  <div class="modal-card">
-    <button type="button" class="modal-close" aria-label="Fechar">&times;</button>
-    <h3 id="lead-modal-title">Quero mais informações</h3>
-    <p class="subtitle">Preencha seus dados e fale com um consultor.</p>
-    <form id="lead-form" novalidate>
-      <input class="modal-field" type="text"  name="name"     placeholder="Nome completo" required autocomplete="name">
-      <input class="modal-field" type="email" name="email"    placeholder="E-mail" required autocomplete="email">
-      <input class="modal-field" type="tel"   name="phone"    placeholder="(00) 00000-0000" required autocomplete="tel">
-      <select class="modal-field" name="formacao" required>
-        <option value="" disabled selected>Formação</option>
-        <option value="graduacao-em-andamento">Graduação em andamento</option>
-        <option value="graduado">Graduado</option>
-        <option value="pos-graduado">Pós-graduado</option>
-        <option value="ensino-medio">Ensino médio</option>
-      </select>
-      <button type="submit" class="modal-submit">QUERO MAIS INFORMAÇÕES</button>
-      <p class="modal-privacy">Seus dados estão protegidos e serão usados apenas para contato sobre o curso.</p>
+<div class="lead-modal" id="leadModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="leadModalTitle">
+  <div class="lead-modal__backdrop" data-modal-close></div>
+  <div class="lead-modal__dialog" role="document">
+    <button type="button" class="lead-modal__close" aria-label="Fechar" data-modal-close>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="lead-modal__head">
+      <p class="lead-modal__eyebrow">
+        <span class="lead-modal__eyebrow-dot" aria-hidden="true"></span>
+        <span>Últimas vagas · Bolsa de 30%</span>
+      </p>
+      <h2 class="lead-modal__title" id="leadModalTitle">Preencha e garanta sua vaga</h2>
+      <p class="lead-modal__subtitle">Nossa equipe entra em contato para tirar todas as suas dúvidas sobre a pós.</p>
+    </div>
+    <form class="lead-form" novalidate>
+      <label class="lead-field">
+        <span class="lead-field__label">Nome completo</span>
+        <input type="text" name="name" required autocomplete="name" placeholder="Digite seu nome completo" />
+      </label>
+      <label class="lead-field">
+        <span class="lead-field__label">E-mail</span>
+        <input type="email" name="email" required autocomplete="email" placeholder="voce@email.com" />
+      </label>
+      <label class="lead-field">
+        <span class="lead-field__label">WhatsApp com DDD</span>
+        <input type="tel" name="phone" required autocomplete="tel" placeholder="(00) 00000-0000" />
+      </label>
+      <label class="lead-field">
+        <span class="lead-field__label">Formação</span>
+        <div class="lead-field__select">
+          <select name="formacao" required>
+            <option value="" disabled selected>Selecione uma opção</option>
+            <option value="Graduação em andamento">Graduação em andamento</option>
+            <option value="Graduado">Graduado</option>
+            <option value="Pós-graduado">Pós-graduado</option>
+            <option value="Ensino médio">Ensino médio</option>
+          </select>
+          <svg class="lead-field__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </label>
+      <button type="submit" class="modal-submit">
+        <span>QUERO MINHA VAGA</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+      <p class="lead-form__disclaimer">Ao continuar, você concorda em receber contato da nossa equipe pelos dados informados.</p>
     </form>
   </div>
 </div>
@@ -106,7 +326,11 @@
 
 <script id="custom-js">
 (function(){
-  // Util — máscara (00) 00000-0000
+  'use strict';
+  var SELO_MEC = 'https://www.vanusacardoso.com.br/wp-content/uploads/2023/08/SELO-MEC-1024x1024.png';
+  // Webhook Clint da UAG — preservado do código original
+  var CLINT_WEBHOOK = 'https://functions-api.clint.digital/endpoints/integration/webhook/c8a92c25-f534-4dfd-aa4c-64676173359b';
+
   function maskPhone(v){
     v = v.replace(/\D/g,'').slice(0,11);
     if(v.length>10) return v.replace(/(\d{2})(\d{5})(\d{0,4}).*/,'($1) $2-$3');
@@ -139,83 +363,65 @@
     window.location.href = '/obrigado.html?' + p.toString();
   }
 
-  var modal, form, phoneInput;
-  function openModal(){
+  function initLeadModal(){
+    var modal = document.getElementById('leadModal');
     if(!modal) return;
-    modal.classList.add('open');
-    document.body.style.overflow='hidden';
-    setTimeout(function(){ var n=form.querySelector('input[name="name"]'); if(n) n.focus(); },60);
-    if(window.dataLayer) window.dataLayer.push({event:'lead_modal_open'});
-  }
-  function closeModal(){
-    if(!modal) return;
-    modal.classList.remove('open');
-    document.body.style.overflow='';
-  }
+    var form = modal.querySelector('.lead-form');
+    var submitBtn = modal.querySelector('.modal-submit');
+    var firstField = modal.querySelector('input[name="name"]');
+    var closers = modal.querySelectorAll('[data-modal-close]');
+    var phoneInput = form.querySelector('input[name="phone"]');
 
-  function bindCtas(){
-    // Renomeia todos os CADASTRAR para QUERO MAIS INFORMAÇÕES
-    document.querySelectorAll('a.e_botao, .gpc_botao, .gpc_botao span').forEach(function(el){
-      (function walk(n){
-        for(var i=0;i<n.childNodes.length;i++){
-          var c=n.childNodes[i];
-          if(c.nodeType===3 && /cadastrar/i.test(c.nodeValue)) c.nodeValue = c.nodeValue.replace(/cadastrar/gi,'QUERO MAIS INFORMAÇÕES');
-          else if(c.nodeType===1) walk(c);
-        }
-      })(el);
+    function openModal(e){
+      if(e) e.preventDefault();
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden','false');
+      document.body.classList.add('modal-open');
+      setTimeout(function(){ if(firstField) firstField.focus(); }, 350);
+      if(window.dataLayer) window.dataLayer.push({event:'lead_modal_open'});
+    }
+    function closeModal(){
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden','true');
+      document.body.classList.remove('modal-open');
+    }
+
+    // Event delegation no document: pega cliques em .btn-glow OU CTAs antigos do GreatPages
+    document.addEventListener('click', function(e){
+      var trigger = e.target.closest('.btn-glow, a.e_botao, .gpc_botao, .reveal-form-btn, a[href*="#form"], a[href*="#cadastrar"]');
+      if(trigger) openModal(e);
     });
-    // Intercepta cliques em CTAs de âncora/submit para abrir o modal
-    var selectors = [
-      'a.e_botao',
-      '.reveal-form-btn',
-      '.gpc_botao',
-      'a[href*="#form"]',
-      'a[href*="#cadastrar"]'
-    ];
-    document.querySelectorAll(selectors.join(',')).forEach(function(el){
-      if(el.__leadBound) return; el.__leadBound=true;
-      el.addEventListener('click', function(ev){
-        ev.preventDefault();
-        ev.stopPropagation();
-        openModal();
-      }, true);
+    closers.forEach(function(c){ c.addEventListener('click', closeModal); });
+    document.addEventListener('keydown', function(e){
+      if(e.key==='Escape' && modal.classList.contains('is-open')) closeModal();
     });
-  }
 
-  function placeHeroButton(){
-    // Insere o botão principal "QUERO MAIS INFORMAÇÕES" onde o form inline existia
-    var formInline = document.querySelector('form.e_formulario');
-    if(!formInline) return;
-    if(document.querySelector('.reveal-form-btn')) return;
-    var btn = document.createElement('button');
-    btn.type='button';
-    btn.className='reveal-form-btn';
-    btn.innerText='QUERO MAIS INFORMAÇÕES';
-    btn.addEventListener('click', openModal);
-    formInline.parentNode.insertBefore(btn, formInline);
-  }
+    // Renomeia "CADASTRAR" → "Quero mais informações" nos botões antigos do GreatPages
+    function renameCtas(){
+      document.querySelectorAll('a.e_botao, .gpc_botao').forEach(function(el){
+        (function walk(n){
+          for(var i=0;i<n.childNodes.length;i++){
+            var c=n.childNodes[i];
+            if(c.nodeType===3 && /cadastrar/i.test(c.nodeValue)) c.nodeValue = c.nodeValue.replace(/cadastrar/gi,'Quero mais informações');
+            else if(c.nodeType===1) walk(c);
+          }
+        })(el);
+      });
+    }
+    renameCtas();
+    setTimeout(renameCtas, 400);
+    setTimeout(renameCtas, 1200);
 
-  function init(){
-    modal = document.getElementById('lead-modal');
-    if(!modal) return;
-    form  = modal.querySelector('#lead-form');
-    phoneInput = form.querySelector('input[name="phone"]');
+    if(phoneInput){
+      phoneInput.addEventListener('input', function(){ phoneInput.value = maskPhone(phoneInput.value); });
+    }
 
-    // Fechar modal: botão X, clique fora do card, ESC
-    modal.querySelector('.modal-close').addEventListener('click', closeModal);
-    modal.addEventListener('click', function(e){ if(e.target===modal) closeModal(); });
-    document.addEventListener('keydown', function(e){ if(e.key==='Escape' && modal.classList.contains('open')) closeModal(); });
-
-    // Máscara telefone
-    phoneInput.addEventListener('input', function(){ phoneInput.value = maskPhone(phoneInput.value); });
-
-    // Submit
     form.addEventListener('submit', function(e){
       e.preventDefault();
-      if(!form.reportValidity()) return;
-      var btn = form.querySelector('.modal-submit');
-      btn.disabled = true;
-      btn.textContent = 'ENVIANDO...';
+      if(!form.checkValidity()){ form.reportValidity(); return; }
+      submitBtn.disabled = true;
+      var span = submitBtn.querySelector('span');
+      if(span) span.textContent = 'ENVIANDO...';
 
       var utms = getUTMs();
       var name     = form.querySelector('[name="name"]').value.trim();
@@ -226,23 +432,16 @@
       var data = {
         name: name, email: email, phone: phone, formacao: formacao,
         utm_source: utms.utm_source, utm_medium: utms.utm_medium,
-        utm_campaign: utms.utm_campaign, utm_term: utms.utm_term,
-        utm_content: utms.utm_content
+        utm_campaign: utms.utm_campaign, utm_term: utms.utm_term, utm_content: utms.utm_content
       };
-
-      // Payload para Clint (fallback direto) — usa "nome" em português
       var clintPayload = {
         nome: name, email: email, phone: phone, formacao: formacao,
         utm_source: utms.utm_source, utm_medium: utms.utm_medium,
-        utm_campaign: utms.utm_campaign, utm_term: utms.utm_term,
-        utm_content: utms.utm_content
+        utm_campaign: utms.utm_campaign, utm_term: utms.utm_term, utm_content: utms.utm_content
       };
-
       if(window.dataLayer) window.dataLayer.push({
-        event:'lead_submit',
-        lead_formacao: formacao,
-        utm_source: utms.utm_source,
-        utm_campaign: utms.utm_campaign
+        event:'lead_submit', lead_formacao: formacao,
+        utm_source: utms.utm_source, utm_campaign: utms.utm_campaign
       });
 
       fetch('/api/lead', {
@@ -254,24 +453,37 @@
       .then(function(){ redirect(name, email, phone, formacao, utms); })
       .catch(function(){
         try {
-          navigator.sendBeacon(
-            'https://functions-api.clint.digital/endpoints/integration/webhook/c8a92c25-f534-4dfd-aa4c-64676173359b',
-            new Blob([JSON.stringify(clintPayload)], {type: 'application/json'})
-          );
+          navigator.sendBeacon(CLINT_WEBHOOK, new Blob([JSON.stringify(clintPayload)], {type: 'application/json'}));
         } catch(_){}
         redirect(name, email, phone, formacao, utms);
       });
     });
-
-    placeHeroButton();
-    bindCtas();
   }
 
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', init);
-  else init();
-  // Reaplicar CTAs caso o GreatPages re-renderize
-  setTimeout(bindCtas, 400);
-  setTimeout(bindCtas, 1200);
+  function placeHeroButton(){
+    var formInline = document.querySelector('form.e_formulario');
+    if(!formInline) return;
+    if(document.querySelector('.btn-glow')) return;
+    var a = document.createElement('a');
+    a.className = 'btn-glow';
+    a.href = '#';
+    a.setAttribute('aria-label', 'Quero mais informações');
+    a.innerHTML = '<span class="btn-glow__label">Quero mais informações</span>' +
+                  '<span class="btn-glow__seal" aria-hidden="true"><img src="' + SELO_MEC + '" alt="" loading="lazy" decoding="async"></span>';
+    formInline.parentNode.insertBefore(a, formInline);
+  }
+
+  // Bootstrap: roda SEMPRE, com try/catch pra surfacar erros silenciosos
+  function bootstrap(){
+    try { initLeadModal(); } catch(err){ console.error('initLeadModal failed:', err); }
+    try { placeHeroButton(); } catch(err){ console.error('placeHeroButton failed:', err); }
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', bootstrap, {once:true});
+  else bootstrap();
+
+  // Reaplicar caso GreatPages re-renderize partes da página
+  setTimeout(placeHeroButton, 400);
+  setTimeout(placeHeroButton, 1200);
 })();
 </script>
 </body></html>
