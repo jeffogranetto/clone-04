@@ -31,7 +31,9 @@ html = html.replace(/<body([^>]*)>/, (m, attrs) => `<body${attrs}>${PROMO_BAR}`)
 
 // -------- 2) Google Tag Manager no <head> --------
 const GTM = `
+<!-- Google Tag Manager -->
 <script id="custom-gtm">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src="https://load.traker.fundacoessemcomplicacoes.com.br/awvoctqkzh.js?"+i;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','42cfn=AR5WNiAuQj1fKFkmRlZWUB5HWV9FRQsYVRweHxACDBkNCRgUGQAAGxgWAhIVAAATG1QIHhlNDQQ%3D');</script>
+<!-- End Google Tag Manager -->
 `;
 
 // -------- 3) Estilos do modal + barra + CTAs --------
@@ -136,7 +138,6 @@ const CUSTOM_JS = `
     modal.classList.add('open');
     document.body.style.overflow='hidden';
     setTimeout(function(){ var n=form.querySelector('input[name="name"]'); if(n) n.focus(); },60);
-    if(window.dataLayer) window.dataLayer.push({event:'lead_modal_open'});
   }
   function closeModal(){
     if(!modal) return;
@@ -228,13 +229,6 @@ const CUSTOM_JS = `
         utm_campaign: utms.utm_campaign, utm_term: utms.utm_term,
         utm_content: utms.utm_content
       };
-
-      if(window.dataLayer) window.dataLayer.push({
-        event:'lead_submit',
-        lead_formacao: formacao,
-        utm_source: utms.utm_source,
-        utm_campaign: utms.utm_campaign
-      });
 
       fetch('/api/lead', {
         method: 'POST',
