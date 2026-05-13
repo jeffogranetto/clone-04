@@ -215,6 +215,14 @@ const CUSTOM_JS = `
       var phone    = form.querySelector('[name="phone"]').value.trim();
       var formacao = form.querySelector('[name="formacao"]').value;
 
+      if (phone.replace(/\D/g, '').length < 10) {
+        btn.disabled = false;
+        btn.textContent = 'QUERO MAIS INFORMAÇÕES';
+        form.querySelector('[name="phone"]').focus();
+        alert('Por favor, informe um telefone válido com DDD (10 ou 11 dígitos).');
+        return;
+      }
+
       var data = {
         name: name, email: email, phone: phone, formacao: formacao,
         utm_source: utms.utm_source, utm_medium: utms.utm_medium,

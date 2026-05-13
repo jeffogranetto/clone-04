@@ -33,9 +33,10 @@ export async function onRequestPost(context) {
       utm_source, utm_medium, utm_campaign, utm_term, utm_content,
     } = body;
 
-    if (!name || !email || !phone) {
+    const phoneDigits = (phone || '').replace(/\D/g, '');
+    if (!name || !email || !phone || phoneDigits.length < 10) {
       return new Response(
-        JSON.stringify({ error: 'Campos obrigatorios: name, email, phone' }),
+        JSON.stringify({ error: 'Campos obrigatorios: name, email, phone (min 10 digitos)' }),
         { status: 400, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
       );
     }
